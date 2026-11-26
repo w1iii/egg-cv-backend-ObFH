@@ -1,0 +1,13 @@
+# Railway/Nixpacks build config.
+#
+# ultralytics depends on `opencv-python` (GUI build), which shadows our
+# `opencv-python-headless` in the same `cv2` package directory. The Nixpacks
+# runtime image has no libGL, so `import cv2` dies with:
+#   ImportError: libGL.so.1: cannot open shared object file
+# Installing libgl1 at build time did not survive into the runtime image, so
+# drop the GUI build and reinstall the headless one after dependencies resolve.
+[phases.build]
+cmds = [
+  "/opt/venv/bin/pip uninstall -y opencv-python",
+  "/opt/venv/bin/pip install --force-reinstall --no-deps opencv-python-headless==4.9.0.80",
+]

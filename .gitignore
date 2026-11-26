@@ -1,0 +1,12 @@
+.env
+.env.roboflow
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+uploads/
+reports/egg_statistics_v2.csv
+*.log
+.DS_Store
